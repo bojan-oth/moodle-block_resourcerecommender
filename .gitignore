@@ -1,0 +1,20 @@
+# Local configuration and environment files
+config.php
+.env
+.env.*
+
+# Dependencies and generated files
+/vendor/
+/node_modules/
+/coverage/
+/phpunitdata/
+/behatdata/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Operating systems
+.DS_Store
+Thumbs.db
