@@ -1,0 +1,15 @@
+{{#recommendations}}
+    <div class="block-resourcerecommender-item">
+        <p>
+            <a href="{{url}}">{{title}}</a>
+        </p>
+
+        {{#explanation}}
+            <p>{{explanation}}</p>
+        {{/explanation}}
+    </div>
+{{/recommendations}}
+
+{{^recommendations}}
+    <p>{{noresults}}</p>
+{{/recommendations}}
