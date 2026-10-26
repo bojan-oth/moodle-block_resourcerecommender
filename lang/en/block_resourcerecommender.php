@@ -13,3 +13,12 @@ $string['resourcerecommender:myaddinstance'] =
 
 $string['resourcerecommender:managetopics'] =
     'Manage resource topic mappings';
+
+$string['managetopics'] = 'Manage resource topics';
+$string['topicname'] = 'Topic name';
+$string['topickeywords'] = 'Keywords (comma-separated)';
+$string['selectresources'] = 'Select resources associated with this topic';
+$string['createtopic'] = 'Create topic';
+$string['topiccreated'] = 'Topic created successfully.';
+$string['topicnamerequired'] = 'Please enter a topic name.';
+$string['topicexists'] = 'A topic with this name already exists in this course.';
