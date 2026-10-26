@@ -22,3 +22,8 @@ $string['createtopic'] = 'Create topic';
 $string['topiccreated'] = 'Topic created successfully.';
 $string['topicnamerequired'] = 'Please enter a topic name.';
 $string['topicexists'] = 'A topic with this name already exists in this course.';
+
+$string['existingtopics'] = 'Existing topics';
+$string['notopics'] = 'No topics have been created for this course yet.';
+$string['associatedresources'] = 'Associated resources';
+$string['nomappedresources'] = 'No accessible resources are mapped to this topic.';

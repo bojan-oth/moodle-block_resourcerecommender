@@ -102,7 +102,82 @@ if ($message !== '') {
     echo $OUTPUT->notification($message, \core\output\notification::NOTIFY_ERROR);
 }
 
+
+echo $OUTPUT->heading(get_string('existingtopics', 'block_resourcerecommender'), 3);
+
+$topics = $DB->get_records(
+    'block_rr_topics',
+    ['courseid' => $courseid],
+    'name ASC'
+);
+
 $modinfo = get_fast_modinfo($course);
+
+if (empty($topics)) {
+    echo $OUTPUT->notification(
+        get_string('notopics', 'block_resourcerecommender'),
+        \core\output\notification::NOTIFY_INFO
+    );
+} else {
+    foreach ($topics as $topic) {
+        echo html_writer::start_div('card mb-3');
+        echo html_writer::start_div('card-body');
+
+        echo $OUTPUT->heading(format_string($topic->name), 4);
+
+        if (trim((string) $topic->keywords) !== '') {
+            echo html_writer::tag(
+                'p',
+                html_writer::tag('strong', get_string('topickeywords', 'block_resourcerecommender') . ': ')
+                . s($topic->keywords)
+            );
+        }
+
+        echo html_writer::tag(
+            'p',
+            html_writer::tag('strong', get_string('associatedresources', 'block_resourcerecommender'))
+        );
+
+        $mappings = $DB->get_records(
+            'block_rr_mapping',
+            ['topicid' => $topic->id],
+            'id ASC'
+        );
+
+        $resourceitems = [];
+
+        foreach ($mappings as $mapping) {
+            if (!isset($modinfo->cms[$mapping->cmid])) {
+                continue;
+            }
+
+            $cm = $modinfo->cms[$mapping->cmid];
+
+            if (!$cm->uservisible) {
+                continue;
+            }
+
+            $resourceitems[] = html_writer::link(
+                $cm->url,
+                format_string($cm->name)
+            );
+        }
+
+        if (empty($resourceitems)) {
+            echo html_writer::tag(
+                'p',
+                get_string('nomappedresources', 'block_resourcerecommender')
+            );
+        } else {
+            echo html_writer::alist($resourceitems);
+        }
+
+        echo html_writer::end_div();
+        echo html_writer::end_div();
+    }
+}
+
+
 $resources = [];
 
 foreach ($modinfo->get_cms() as $cm) {
