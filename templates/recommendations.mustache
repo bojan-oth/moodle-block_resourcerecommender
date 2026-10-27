@@ -1,15 +1,13 @@
-{{#recommendations}}
-    <div class="block-resourcerecommender-item">
-        <p>
-            <a href="{{url}}">{{title}}</a>
-        </p>
+<strong class="d-block mb-2">Related resources</strong>
 
-        {{#explanation}}
-            <p>{{explanation}}</p>
-        {{/explanation}}
-    </div>
+{{#recommendations}}
+<div class="mb-2 pb-2 border-bottom">
+    <a href="{{url}}" class="text-decoration-none">
+        {{title}}
+    </a>
+</div>
 {{/recommendations}}
 
 {{^recommendations}}
-    <p>{{noresults}}</p>
+<p class="text-muted mb-0">{{noresults}}</p>
 {{/recommendations}}
